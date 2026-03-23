@@ -224,19 +224,19 @@ def render_results():
     st.markdown("#### Prioritised Remediation Roadmap")
     sorted_dims = sorted(DIMENSIONS, key=lambda d: scores[d['key']]['average'])
 
-    priority_map = {
-        (0, 2): ('🔴 Critical — Act Immediately', '0–90 days'),
-        (2, 3): ('🟠 High Priority', '90–180 days'),
-        (3, 4): ('🟡 Medium Priority', '180–365 days'),
-        (4, 6): ('🟢 Maintain & Optimise', '12–24 months')
-    }
+    def get_priority(avg):
+        if avg < 2:
+            return '🔴 Critical — Act Immediately', '0–90 days'
+        elif avg < 3:
+            return '🟠 High Priority', '90–180 days'
+        elif avg < 4:
+            return '🟡 Medium Priority', '180–365 days'
+        else:
+            return '🟢 Maintain & Optimise', '12–24 months'
 
     for rank, dim in enumerate(sorted_dims):
         avg = scores[dim['key']]['average']
-        priority_label, horizon = next(
-            (v for k, v in priority_map.items() if k[0] <= avg < k[1]),
-            ('🟢 Maintain & Optimise', '12–24 months')
-        )
+        priority_label, horizon = get_priority(avg)
         with st.container():
             st.markdown(f"**{rank+1}. {dim['name']}** · Score: {avg}/5.0")
             st.caption(f"{priority_label} · {horizon}")

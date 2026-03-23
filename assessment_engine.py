@@ -32,8 +32,7 @@ DIMENSIONS = [
         'questions': [
             'When an AI system in production begins to underperform or drift, the governance function — not just the technical team — is informed and has a defined response protocol.',
             'Executives and board members who rely on AI-informed decisions can articulate the confidence level, known limitations, and failure modes of those systems — not just their outputs.',
-            'AI governance has defined KPIs that appear on leadership dashboards alongside financial
-and operational metrics — treated as a business performance indicator, not a compliance exercise.'
+            'AI governance has defined KPIs that appear on leadership dashboards alongside financial and operational metrics — treated as a business performance indicator, not a compliance exercise.'
         ]
     },
     {
